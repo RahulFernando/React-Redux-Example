@@ -1,24 +1,20 @@
-const INITIAL_STATE = {
-    value: 0,
-}
+import { createSlice } from '@reduxjs/toolkit';
 
-const counterReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                ...state,
-                value: state.value + 1,
-            };
-
-        case 'DECREMENT':
-            return {
-                ...state,
-                value: state.value - 1,
-            };
-    
-        default:
-            return state;
+export const counter = createSlice({
+    name: 'counter',
+    initialState: {
+        value: 0
+    },
+    reducers: {
+        increase: state => {
+            state.value++;
+        },
+        decrease: state => {
+            state.value--;
+        }
     }
-}
+});
 
-export default counterReducer;
+export const { increase, decrease } = counter.actions;
+
+export default counter.reducer;
