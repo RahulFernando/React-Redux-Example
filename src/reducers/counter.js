@@ -1,24 +1,18 @@
-const INITIAL_STATE = {
-    value: 0,
-}
+import { produce } from 'immer';
 
-const counterReducer = (state = INITIAL_STATE, action) => {
+const counterReducer = (state = { value: 0 }, action) => produce(state, draft  => {
     switch (action.type) {
         case 'INCREMENT':
-            return {
-                ...state,
-                value: state.value + 1,
-            };
+            draft.value += 1;
+            break;
 
         case 'DECREMENT':
-            return {
-                ...state,
-                value: state.value - 1,
-            };
+            draft.value -= 1;
+            break;
     
         default:
-            return state;
+            return draft;
     }
-}
+});
 
 export default counterReducer;
